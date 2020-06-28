@@ -45,23 +45,23 @@ SELECT * FROM profile;
 
 DELIMiTER //
 /*Тригггер, который не позволяет обновить данный загранпаспорта, если человек не может получить его*/
-/*DROP TRIGGER IF EXISTS update_darcons//
+DROP TRIGGER IF EXISTS update_darcons//
 CREATE TRIGGER update_darcons BEFORE UPDATE ON darcons
 FOR EACH ROW
 BEGIN
 	IF  ((SELECT id_number FROM repatriates
 		 	WHERE (id_number = NEW.id_number) & (YEAR(now()) - YEAR(allia_date) > 0 || MONTH(allia_date) - MONTH(now()) > 3)) is NULL)
 		 THEN
-		 	SIGNAL SQLSTATE "45000' SET MESSAGE_TEXT = 'UPDATED canceled, this men/woman can't get darcon";
+		 	SIGNAL SQLSTATE "45000" SET MESSAGE_TEXT = "UPDATED canceled, this men/woman can't get darcon";
 	END IF;
 END//
 
 	 
 		 
-UPDATE darcons SET
+/*UPDATE darcons SET
 passport_id = '2131231231'
 where 
-id_number = 9264877349
-*/
+id_number = 9264877349*/
+
 
 
